@@ -13,6 +13,7 @@ export default function Hero() {
 						<span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500">
 							Hello, I'm{" "}
 						</span>
+						<br />
 						<TypeAnimation
 							sequence={[
 								"Kevin",
