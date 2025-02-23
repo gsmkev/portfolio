@@ -63,7 +63,7 @@ const tabsData = [
 ];
 
 function About() {
-	const [tabs, setTabs] = useState("skills");
+	const [tabs, setTabs] = useState(tabsData[0].id);
 	const [isPending, startTransition] = useTransition();
 
 	const handleTabChange = (tab: string) => {
