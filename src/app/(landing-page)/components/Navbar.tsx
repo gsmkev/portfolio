@@ -28,19 +28,19 @@ function Navbar() {
 				</Link>
 				<div className="mobile-menu block md:hidden">
 					{navbarOpen ? (
-						<Button
+						<button
 							className="flex items-center px-3 py-2 border-slate-200 text-slate-200 hover:text-white hover:border-white"
 							onClick={() => setNavbarOpen(!navbarOpen)}
 						>
 							<XMarkIcon className="w-5 h-5" />
-						</Button>
+						</button>
 					) : (
-						<Button
+						<button
 							className="flex items-center px-3 py-2 border-slate-200 text-slate-200 hover:text-white hover:border-white"
 							onClick={() => setNavbarOpen(!navbarOpen)}
 						>
 							<Bars3Icon className="w-5 h-5" />
-						</Button>
+						</button>
 					)}
 				</div>
 				<div className="menu hidden md:block md:w-auto" id="navbar">

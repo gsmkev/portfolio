@@ -1,8 +1,11 @@
 "use client";
 
 import React from "react";
-import AnimatedNumbers from "react-animated-numbers";
+import dynamic from "next/dynamic";
 
+const AnimatedNumbers = dynamic(() => import("react-animated-numbers"), {
+  ssr: false,
+});
 const metrics = [
 	{ name: "Projects", value: 10, prefix: "" },
 	{ name: "Hours", value: 100, prefix: "+" },

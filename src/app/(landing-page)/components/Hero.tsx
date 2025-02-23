@@ -43,14 +43,14 @@ export default function Hero() {
 						quae minus culpa quia veniam.
 					</p>
 					<div>
-						<Button className="px-6 inline-block py-3 w-full sm:w-fit rounded-full mr-4 bg-gradient-to-br from-green-500 via-cyan-700 to-blue-500 hover:bg-slate-200 text-white">
+						<button className="px-6 inline-block py-3 w-full sm:w-fit rounded-full mr-4 bg-gradient-to-br from-green-500 via-cyan-700 to-blue-500 hover:bg-slate-200 text-white">
 							Contact Me
-						</Button>
-						<Button className="relative inline-block w-full sm:w-fit rounded-full p-[2px] bg-gradient-to-br from-green-500 via-cyan-700 to-blue-500 hover:bg-slate-800 border border-transparent mt-3">
+						</button>
+						<button className="relative inline-block w-full sm:w-fit rounded-full p-[2px] bg-gradient-to-br from-green-500 via-cyan-700 to-blue-500 hover:bg-slate-800 border border-transparent mt-3">
 							<span className="block w-full h-full bg-[#121212] text-white rounded-full px-6 py-2 text-center">
 								Download CV
 							</span>
-						</Button>
+						</button>
 					</div>
 				</motion.div>
 				<motion.div
