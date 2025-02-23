@@ -4,8 +4,7 @@ import Card from "./Card";
 import { useState } from "react";
 import Tags from "./Tags";
 import { useRef } from "react";
-import { animate, motion, useInView } from "framer-motion";
-import { init } from "next/dist/compiled/webpack/webpack";
+import { motion, useInView } from "framer-motion";
 
 const projectsData = [
 	{
