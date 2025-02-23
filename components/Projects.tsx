@@ -3,6 +3,9 @@
 import Card from "./Card";
 import { useState } from "react";
 import Tags from "./Tags";
+import { useRef } from "react";
+import { animate, motion, useInView } from "framer-motion";
+import { init } from "next/dist/compiled/webpack/webpack";
 
 const projectsData = [
 	{
@@ -75,8 +78,16 @@ function Projects() {
 		return project.tag.includes(tag);
 	});
 
+	const ref = useRef(null);
+	const isInView = useInView(ref, { once: true });
+
+	const cardVariants = {
+		initial: { y: 50, opacity: 0 },
+		animate: { y: 0, opacity: 1 },
+	};
+
 	return (
-		<>
+		<section>
 			<h2 className="text-center text-4xl font-bold text-white mt-4 mb-8 md:mb-12">
 				My Projects
 			</h2>
@@ -90,17 +101,25 @@ function Projects() {
 					/>
 				))}
 			</div>
-			<div className="grid md:grid-cols-3 gap-8 md:gap-12">
+			<ul ref={ref} className="grid md:grid-cols-3 gap-8 md:gap-12">
 				{filteredProjects.map((project) => (
-					<Card
+					<motion.li
+						variants={cardVariants}
 						key={project.id}
-						title={project.title}
-						description={project.description}
-						imageUrl={project.image}
-					/>
+						initial="initial"
+						animate={isInView ? "animate" : "initial"}
+						transition={{ duration: 0.3, delay: project.id * 0.2 }}
+					>
+						<Card
+							key={project.id}
+							title={project.title}
+							description={project.description}
+							imageUrl={project.image}
+						/>
+					</motion.li>
 				))}
-			</div>
-		</>
+			</ul>
+		</section>
 	);
 }
 export default Projects;
