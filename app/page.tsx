@@ -4,6 +4,7 @@ import About from "@/components/About";
 import Projects from "@/components/Projects";
 import Email from "@/components/Email";
 import Footer from "@/components/Footer";
+import Stats from "@/components/Stats";
 
 export default function Home() {
 	return (
@@ -11,6 +12,7 @@ export default function Home() {
 			<Navbar />
 			<div className="container mt-24 mx-auto px-12 py-4">
 				<Hero />
+				<Stats />
 				<About />
 				<Projects />
 				<Email />
