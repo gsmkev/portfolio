@@ -3,6 +3,7 @@ import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import { vercelPostgresAdapter } from "@payloadcms/db-vercel-postgres";
 import { buildConfig } from "payload";
 import { Projects } from "@/app/collections/projects";
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 
 export default buildConfig({
 	editor: lexicalEditor(),
@@ -14,4 +15,12 @@ export default buildConfig({
 		},
 	}),
 	sharp,
+	plugins: [
+		vercelBlobStorage({
+			collections: {
+				projects: true,
+			},
+			token: process.env.BLOB_READ_WRITE_TOKEN,
+		}),
+	],
 });
