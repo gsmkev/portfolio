@@ -9,7 +9,7 @@ import Menu from "./Menu";
 const Navlinks = [
 	{ href: "#about", title: "About" },
 	{ href: "#projects", title: "Projects" },
-	{ href: "#blog", title: "Blog" },
+	//{ href: "#blog", title: "Blog" }, temporarily removed
 	{ href: "#contact", title: "Contact" },
 ];
 
