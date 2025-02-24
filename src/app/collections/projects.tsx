@@ -20,16 +20,27 @@ export const Projects: CollectionConfig = {
 		},
 		{
 			name: "description",
-			type: "textarea",
+			type: "text",
 			required: true,
 		},
 		{
 			name: "tag",
 			type: "select",
+			required: true,
 			options: [
 				{ label: "Web", value: "Web" },
 				{ label: "Mobile", value: "Mobile" },
 			],
+		},
+		{
+			name: "githubUrl",
+			type: "text",
+			required: true,
+		},
+		{
+			name: "previewUrl",
+			type: "text",
+			required: true,
 		},
 	],
 	access: {

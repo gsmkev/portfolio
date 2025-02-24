@@ -120,7 +120,9 @@ export interface Project {
   id: number;
   title: string;
   description: string;
-  tag?: ('Web' | 'Mobile') | null;
+  tag: 'Web' | 'Mobile';
+  githubUrl: string;
+  previewUrl: string;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -215,6 +217,8 @@ export interface ProjectsSelect<T extends boolean = true> {
   title?: T;
   description?: T;
   tag?: T;
+  githubUrl?: T;
+  previewUrl?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;

@@ -15,27 +15,30 @@ function Projects() {
 		setTag(tag);
 	};
 
-  const [projectsData, setProjectsData] = useState<any[]>([]);
+	const [projectsData, setProjectsData] = useState<any[]>([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('/api/projects');
-        const data = await response.json();
-        const filteredData = data.docs.map((project: any) => ({
-          title: project.title,
-          description: project.description,
-          tag: project.tag,
-          image: (process.env.NEXT_PUBLIC_VERCEL_BLOB_BASE_URL || "") + 
-            (project.filename ? project.filename.replace(/\s/g, "%20") : ""),
-        }));
-        setProjectsData(filteredData);
-      } catch (error) {
-        console.error("Error fetching projects data:", error);
-      }
-    };
-    fetchData();
-  }, []);
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const response = await fetch("/api/projects");
+				const data = await response.json();
+				const filteredData = data.docs.map((project: any) => ({
+					title: project.title,
+					description: project.description,
+					tag: project.tag,
+					image:
+						(process.env.NEXT_PUBLIC_VERCEL_BLOB_BASE_URL || "") +
+						(project.filename ? project.filename.replace(/\s/g, "%20") : ""),
+					githubUrl: project.githubUrl,
+					previewUrl: project.previewUrl,
+				}));
+				setProjectsData(filteredData);
+			} catch (error) {
+				console.error("Error fetching projects data:", error);
+			}
+		};
+		fetchData();
+	}, []);
 
 	const filteredProjects = projectsData.filter((project) => {
 		if (tag === "All") return true;
@@ -79,6 +82,8 @@ function Projects() {
 							title={project.title}
 							description={project.description}
 							imageUrl={project.image}
+							githubUrl={project.githubUrl}
+							previewUrl={project.previewUrl}
 						/>
 					</motion.li>
 				))}
