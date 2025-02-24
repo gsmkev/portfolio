@@ -4,14 +4,11 @@ export const Projects: CollectionConfig = {
 	slug: "projects",
   upload: {
     staticDir: 'media',
-    imageSizes: [
-      {
-        name: 'card',
-        width: 720,
-        height: 1280,
-        position: 'centre',
-      },
-    ],
+    resizeOptions: {
+      width: 1280,
+      height: 720,
+      fit: "cover",
+    },
     adminThumbnail: 'thumbnail',
     mimeTypes: ['image/*'],
   },
