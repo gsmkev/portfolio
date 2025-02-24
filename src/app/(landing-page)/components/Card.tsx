@@ -16,10 +16,8 @@ function Card({
 }) {
 	return (
 		<div>
-			<div
-				className="h-52 md:h-72 rounded-t-xl relative group"
-				style={{ background: `url(${imageUrl})`, backgroundSize: "cover" }}
-			>
+      <div className="h-52 md:h-72 rounded-t-xl relative group">
+        <img src={imageUrl} alt={title} className="w-full h-full object-cover rounded-t-xl" />
 				<div className="overlay items-center justify-center absolute top-0 left-0 w-full h-full bg-[#181818] bg-opacity-0 hidden group-hover:flex group-hover:bg-opacity-80 transition-all duration-500 ">
 					{" "}
 					<Link

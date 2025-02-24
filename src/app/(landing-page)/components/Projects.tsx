@@ -1,67 +1,10 @@
 "use client";
 
 import Card from "./Card";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Tags from "./Tags";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-
-const projectsData = [
-	{
-		id: 1,
-		title: "React Portfolio Website",
-		description: "Project 1 description",
-		image: "/images/projects/1.png",
-		tag: ["All", "Web"],
-		gitUrl: "/",
-		previewUrl: "/",
-	},
-	{
-		id: 2,
-		title: "Potography Portfolio Website",
-		description: "Project 2 description",
-		image: "/images/projects/2.png",
-		tag: ["All", "Web"],
-		gitUrl: "/",
-		previewUrl: "/",
-	},
-	{
-		id: 3,
-		title: "E-commerce Application",
-		description: "Project 3 description",
-		image: "/images/projects/3.png",
-		tag: ["All", "Web"],
-		gitUrl: "/",
-		previewUrl: "/",
-	},
-	{
-		id: 4,
-		title: "Food Ordering Application",
-		description: "Project 4 description",
-		image: "/images/projects/4.png",
-		tag: ["All", "Mobile"],
-		gitUrl: "/",
-		previewUrl: "/",
-	},
-	{
-		id: 5,
-		title: "React Firebase Template",
-		description: "Authentication and CRUD operations",
-		image: "/images/projects/5.png",
-		tag: ["All", "Web"],
-		gitUrl: "/",
-		previewUrl: "/",
-	},
-	{
-		id: 6,
-		title: "Full-stack Roadmap",
-		description: "Project 5 description",
-		image: "/images/projects/6.png",
-		tag: ["All", "Web"],
-		gitUrl: "/",
-		previewUrl: "/",
-	},
-];
 
 const tags = ["All", "Web", "Mobile"];
 
@@ -71,6 +14,28 @@ function Projects() {
 	const handleTagChange = (tag: string) => {
 		setTag(tag);
 	};
+
+  const [projectsData, setProjectsData] = useState<any[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('/api/projects');
+        const data = await response.json();
+        const filteredData = data.docs.map((project: any) => ({
+          title: project.title,
+          description: project.description,
+          tag: project.tag,
+          image: (process.env.NEXT_PUBLIC_VERCEL_BLOB_BASE_URL || "") + 
+            (project.filename ? project.filename.replace(/\s/g, "%20") : ""),
+        }));
+        setProjectsData(filteredData);
+      } catch (error) {
+        console.error("Error fetching projects data:", error);
+      }
+    };
+    fetchData();
+  }, []);
 
 	const filteredProjects = projectsData.filter((project) => {
 		if (tag === "All") return true;
@@ -101,16 +66,16 @@ function Projects() {
 				))}
 			</div>
 			<ul ref={ref} className="grid md:grid-cols-3 gap-8 md:gap-12">
-				{filteredProjects.map((project) => (
+				{filteredProjects.map((project, index) => (
 					<motion.li
 						variants={cardVariants}
-						key={project.id}
+						key={index}
 						initial="initial"
 						animate={isInView ? "animate" : "initial"}
-						transition={{ duration: 0.3, delay: project.id * 0.2 }}
+						transition={{ duration: 0.3, delay: index * 0.2 }}
 					>
 						<Card
-							key={project.id}
+							key={index}
 							title={project.title}
 							description={project.description}
 							imageUrl={project.image}
