@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { Button } from "./ui/button";
 import { TypeAnimation } from "react-type-animation";
 import { motion } from "framer-motion";
 

@@ -3,7 +3,6 @@
 import Link from "next/link";
 import Navlink from "./Navlink";
 import { useState } from "react";
-import { Button } from "./ui/button";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import Menu from "./Menu";
 
