@@ -1,10 +1,27 @@
 "use client";
 
 import Card from "./Card";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Tags from "./Tags";
-import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+
+interface ProjectFromAPI {
+	title: string;
+	description: string;
+	tag: string[];
+	filename: string;
+	githubUrl?: string;
+	previewUrl?: string;
+}
+
+interface Project {
+	title: string;
+	description: string;
+	tag: string[];
+	image: string;
+	githubUrl?: string;
+	previewUrl?: string;
+}
 
 const tags = ["All", "Web", "Mobile"];
 
@@ -15,23 +32,25 @@ function Projects() {
 		setTag(tag);
 	};
 
-	const [projectsData, setProjectsData] = useState<any[]>([]);
+	const [projectsData, setProjectsData] = useState<Project[]>([]);
 
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
 				const response = await fetch("/api/projects");
 				const data = await response.json();
-				const filteredData = data.docs.map((project: any) => ({
-					title: project.title,
-					description: project.description,
-					tag: project.tag,
-					image:
-						(process.env.NEXT_PUBLIC_VERCEL_BLOB_BASE_URL || "") +
-						(project.filename ? project.filename.replace(/\s/g, "%20") : ""),
-					githubUrl: project.githubUrl,
-					previewUrl: project.previewUrl,
-				}));
+				const filteredData: Project[] = data.docs.map(
+					(project: ProjectFromAPI) => ({
+						title: project.title,
+						description: project.description,
+						tag: project.tag,
+						image:
+							(process.env.NEXT_PUBLIC_VERCEL_BLOB_BASE_URL || "") +
+							(project.filename ? project.filename.replace(/\s/g, "%20") : ""),
+						githubUrl: project.githubUrl,
+						previewUrl: project.previewUrl,
+					})
+				);
 				setProjectsData(filteredData);
 			} catch (error) {
 				console.error("Error fetching projects data:", error);

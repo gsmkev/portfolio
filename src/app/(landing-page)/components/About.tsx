@@ -34,7 +34,7 @@ const tabsData = [
 			<ul>
 				<li className="mb-2">
 					<span className="font-semibold">
-						Bachelor's Degree in Computer Science
+						Bachelor&apos;s Degree in Computer Science
 					</span>
 				</li>
 				<li className="mb-2">
