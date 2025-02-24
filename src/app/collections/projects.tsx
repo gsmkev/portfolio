@@ -2,16 +2,16 @@ import type { CollectionConfig } from "payload";
 
 export const Projects: CollectionConfig = {
 	slug: "projects",
-  upload: {
-    staticDir: 'media',
-    resizeOptions: {
-      width: 1280,
-      height: 720,
-      fit: "cover",
-    },
-    adminThumbnail: 'thumbnail',
-    mimeTypes: ['image/*'],
-  },
+	upload: {
+		staticDir: "media",
+		resizeOptions: {
+			width: 1280,
+			height: 720,
+			fit: "cover",
+		},
+		adminThumbnail: "thumbnail",
+		mimeTypes: ["image/*"],
+	},
 	fields: [
 		{
 			name: "title",
@@ -21,15 +21,18 @@ export const Projects: CollectionConfig = {
 		{
 			name: "description",
 			type: "textarea",
-      required: true,
+			required: true,
 		},
 		{
 			name: "tag",
 			type: "select",
 			options: [
 				{ label: "Web", value: "Web" },
-        { label: "Mobile", value: "Mobile" },
+				{ label: "Mobile", value: "Mobile" },
 			],
 		},
 	],
+	access: {
+		read: () => true,
+	},
 };
