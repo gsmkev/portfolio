@@ -5,10 +5,10 @@ import { useEffect, useState, useRef } from "react";
 import Tags from "./Tags";
 import { motion, useInView } from "framer-motion";
 
-interface ProjectFromAPI {
+interface ProjectFromApi {
 	title: string;
 	description: string;
-	tag: string[];
+	tags: string[];
 	filename: string;
 	githubUrl?: string;
 	previewUrl?: string;
@@ -17,7 +17,7 @@ interface ProjectFromAPI {
 interface Project {
 	title: string;
 	description: string;
-	tag: string[];
+	tags: string[];
 	image: string;
 	githubUrl?: string;
 	previewUrl?: string;
@@ -40,10 +40,10 @@ function Projects() {
 				const response = await fetch("/api/projects");
 				const data = await response.json();
 				const filteredData: Project[] = data.docs.map(
-					(project: ProjectFromAPI) => ({
+					(project: ProjectFromApi) => ({
 						title: project.title,
 						description: project.description,
-						tag: project.tag,
+						tags: project.tags,
 						image:
 							(process.env.NEXT_PUBLIC_VERCEL_BLOB_BASE_URL || "") +
 							(project.filename ? project.filename.replace(/\s/g, "%20") : ""),
@@ -61,7 +61,7 @@ function Projects() {
 
 	const filteredProjects = projectsData.filter((project) => {
 		if (tag === "All") return true;
-		return project.tag.includes(tag);
+		return project.tags.includes(tag);
 	});
 
 	const ref = useRef(null);

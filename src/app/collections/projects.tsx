@@ -24,9 +24,10 @@ export const Projects: CollectionConfig = {
 			required: true,
 		},
 		{
-			name: "tag",
+			name: "tags",
 			type: "select",
 			required: true,
+			hasMany: true,
 			options: [
 				{ label: "Web", value: "Web" },
 				{ label: "Mobile", value: "Mobile" },

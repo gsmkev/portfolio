@@ -120,7 +120,7 @@ export interface Project {
   id: number;
   title: string;
   description: string;
-  tag: 'Web' | 'Mobile';
+  tags: ('Web' | 'Mobile')[];
   githubUrl: string;
   previewUrl: string;
   updatedAt: string;
@@ -216,7 +216,7 @@ export interface PayloadMigration {
 export interface ProjectsSelect<T extends boolean = true> {
   title?: T;
   description?: T;
-  tag?: T;
+  tags?: T;
   githubUrl?: T;
   previewUrl?: T;
   updatedAt?: T;
